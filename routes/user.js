@@ -20,10 +20,10 @@ userRoutes.post("/", async (req, res) => {
   });
 
   if (userName) {
-    res.send("user already exist");
+    res.status(400).send("user already exist");
     return;
   } else if (userMail) {
-    res.send("user already exist");
+    res.status(400).send("user already exist");
     return;
   }
 
