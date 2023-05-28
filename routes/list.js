@@ -1,10 +1,10 @@
 const express = require("express");
 const listRoutes = express.Router();
 const _ = require("lodash");
-const { List, validateList } = "../models/list";
+const { List, validateList } = require("../models/list");
 
 listRoutes.post("/", async (req, res) => {
-  const result = validateList();
+  const result = validateList(req.body);
   if (result.error) {
     res.status(400).send(result.error.details[0].message);
   }

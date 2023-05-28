@@ -18,10 +18,10 @@ const listSchema = new mongoose.Schema({
 
 const List = new mongoose.model("List", listSchema);
 
-const validateList = (list) => {
+const validateList = function (list) {
   const schema = Joi.object({
     name: Joi.string().required(),
-    time: Jio.string().required(),
+    time: Joi.string().required(),
   });
 
   return schema.validate(list);
