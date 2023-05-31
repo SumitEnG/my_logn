@@ -57,6 +57,6 @@ listRoutes.delete("/:id", async (req, res) => {
     return;
   }
 
-  res.sendStatus("deleted successfully");
+  res.send("deleted successfully");
 });
 module.exports = listRoutes;
