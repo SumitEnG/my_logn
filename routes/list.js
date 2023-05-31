@@ -48,4 +48,15 @@ listRoutes.put("/:id", async (req, res) => {
 
   res.send(list);
 });
+
+listRoutes.delete("/:id", async (req, res) => {
+  const list = await List.findByIdAndDelete(req.params.id);
+
+  if (!list) {
+    res.status(400).send("invalid task");
+    return;
+  }
+
+  res.sendStatus("deleted successfully");
+});
 module.exports = listRoutes;
