@@ -3,6 +3,11 @@ const listRoutes = express.Router();
 const _ = require("lodash");
 const { List, validateList } = require("../models/list");
 
+listRoutes.get("/", async (req, res) => {
+  const list = await List.find();
+  res.send(list);
+});
+
 listRoutes.post("/", async (req, res) => {
   const result = validateList(req.body);
   if (result.error) {
