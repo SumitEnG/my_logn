@@ -4,8 +4,8 @@ require("dotenv").config();
 module.exports = function () {
   mongoose
     .connect(process.env.dbUrl, {
-      useNewUrlParser: true,
       useUnifiedTopology: true,
+      useNewUrlParser: true,
     })
     .then(() => {
       console.log("connected to db.. ");

@@ -2,6 +2,9 @@ const express = require("express");
 const listRoutes = express.Router();
 const _ = require("lodash");
 const { List, validateList } = require("../models/list");
+const mongoose = require("mongoose");
+
+let objectId = mongoose.Schema.Types.ObjectId;
 
 listRoutes.get("/", async (req, res) => {
   const list = await List.find();
@@ -20,13 +23,12 @@ listRoutes.post("/", async (req, res) => {
   res.send(list);
 });
 
-listRoutes.put("/", async (req, res) => {
+listRoutes.put("/:id", async (req, res) => {
   const result = validateList(req.body);
   if (result.error) {
     res.status(400).send(result.error.details[0].message);
   }
-
-  let list = await List.findByIdAndUpdate(
+  const list = await List.findByIdAndUpdate(
     req.params.id,
     {
       name: req.body.name,
@@ -36,6 +38,8 @@ listRoutes.put("/", async (req, res) => {
       new: true,
     }
   );
+
+  console.log(list);
 
   if (!list) {
     res.status(400).send("invalid task");
