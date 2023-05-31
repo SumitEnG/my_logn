@@ -4,8 +4,6 @@ const _ = require("lodash");
 const { List, validateList } = require("../models/list");
 const mongoose = require("mongoose");
 
-let objectId = mongoose.Schema.Types.ObjectId;
-
 listRoutes.get("/", async (req, res) => {
   const list = await List.find();
   res.send(list);
@@ -27,6 +25,7 @@ listRoutes.put("/:id", async (req, res) => {
   const result = validateList(req.body);
   if (result.error) {
     res.status(400).send(result.error.details[0].message);
+    return;
   }
   const list = await List.findByIdAndUpdate(
     req.params.id,
