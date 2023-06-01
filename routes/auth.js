@@ -31,6 +31,7 @@ authRoutes.post("/", async (req, res) => {
   res.send({
     token: token,
     username: user.username,
+    _id: user._id,
   });
 });
 
