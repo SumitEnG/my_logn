@@ -27,10 +27,7 @@ listRoutes.post("/", async (req, res) => {
   const list = new List({
     name: req.body.name,
     time: req.body.time,
-    user: {
-      username: user.username,
-      password: user.password,
-    },
+    user: user,
   });
   await list.save();
   res.send(list);
