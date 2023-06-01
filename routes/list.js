@@ -3,6 +3,7 @@ const listRoutes = express.Router();
 const _ = require("lodash");
 const { List, validateList } = require("../models/list");
 const mongoose = require("mongoose");
+const { User } = require("../models/user");
 
 listRoutes.get("/", async (req, res) => {
   const list = await List.find();
@@ -16,7 +17,21 @@ listRoutes.post("/", async (req, res) => {
     return;
   }
 
-  const list = new List(_.pick(req.body, ["name", "time"]));
+  const user = await User.findById(req.body.userId);
+
+  if (!user) {
+    res.status(400).send("invalid user");
+    return;
+  }
+
+  const list = new List({
+    name: req.body.name,
+    time: req.body.time,
+    user: {
+      username: user.username,
+      password: user.password,
+    },
+  });
   await list.save();
   res.send(list);
 });

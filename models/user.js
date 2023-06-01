@@ -24,6 +24,7 @@ const userSchema = new mongoose.Schema({
     max: 30,
     unique: true,
   },
+  list,
 });
 
 userSchema.methods.generateAuthToken = function () {
@@ -51,3 +52,4 @@ const validateUser = function (user) {
 
 module.exports.User = User;
 module.exports.validateUser = validateUser;
+module.exports.userSchema = userSchema;
