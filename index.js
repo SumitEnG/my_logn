@@ -5,7 +5,7 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://sunny-centaur-4573d5.netlify.app",
   })
 );
 
