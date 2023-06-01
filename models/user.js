@@ -24,7 +24,6 @@ const userSchema = new mongoose.Schema({
     max: 30,
     unique: true,
   },
-  list,
 });
 
 userSchema.methods.generateAuthToken = function () {
