@@ -35,7 +35,7 @@ userRoutes.post("/", async (req, res) => {
   const token = newUser.generateAuthToken();
   res
     .header("x-auth-token", token)
-    .send(_.pick(newUser, ["username", "email"]));
+    .send(_.pick(newUser, ["username", "email", "_id"]));
 });
 
 module.exports = userRoutes;
