@@ -7,6 +7,7 @@ const { User } = require("../models/user");
 
 listRoutes.get("/", async (req, res) => {
   let list = await List.find({ "user._id": req.body.userId });
+  console.log(req.body.userId);
   res.send(list);
 });
 
