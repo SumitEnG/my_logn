@@ -5,9 +5,9 @@ const { List, validateList } = require("../models/list");
 const mongoose = require("mongoose");
 const { User } = require("../models/user");
 
-listRoutes.get("/", async (req, res) => {
-  let list = await List.find({ "user._id": req.body.userId });
-  console.log(req.body.userId);
+listRoutes.get("/:id", async (req, res) => {
+  let list = await List.find({ "user._id": req.params.id });
+  console.log(req.params.id);
   res.send(list);
 });
 
