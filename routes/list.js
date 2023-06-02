@@ -6,10 +6,10 @@ const mongoose = require("mongoose");
 const { User } = require("../models/user");
 
 listRoutes.get("/", async (req, res) => {
-  let list = await List.find();
-  list = list.filter((v) => {
+  let list = await List.find((v) => {
     return v.user._id == req.body.userId;
   });
+
   res.send(list);
 });
 
