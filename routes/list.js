@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const { User } = require("../models/user");
 
 listRoutes.get("/", async (req, res) => {
-  const list = await List.find();
+  let list = await List.find();
   list = list.filter((v) => {
     return v.user._id == req.body.userId;
   });
